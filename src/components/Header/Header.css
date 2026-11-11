@@ -1,0 +1,454 @@
+.header {
+    height: 70px;
+    background: linear-gradient(135deg, rgb(38, 0, 1) 0%, #6f1d1d 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    border-bottom: 1px solid #ececec;
+
+    box-shadow: 0 12px 28px rgba(38, 0, 1, 0.16);
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+}
+
+.icon {
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color .25s;
+}
+
+.icon:hover {
+    color: rgb(255, 208, 97);
+}
+
+.header-actions {
+    display: flex;
+    gap: 24px;
+}
+
+.header-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    text-decoration: none;
+}
+
+.cart-icon-link {
+    position: relative;
+}
+
+.cart-count-badge {
+    position: absolute;
+    top: -9px;
+    right: -11px;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    border: 2px solid #6f1d1d;
+    border-radius: 999px;
+    background: #ffd061;
+    color: #260001;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 15px;
+    text-align: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-menu {
+    background: transparent;
+    border: none;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 50;
+}
+
+/* ===== Desktop Sidebar (Icons only, expands on hover) ===== */
+.desktop-sidebar {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 70px;
+    height: calc(100vh - 70px);
+    background: #f9f9f9;
+    z-index: 40;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .desktop-sidebar {
+        display: flex;
+    }
+
+    .btn-menu {
+        display: none;
+    }
+
+    .header-nav {
+        display: none;
+    }
+}
+
+.icon-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 60px;
+    transition: width 0.3s ease;
+    padding: 12px 0;
+}
+
+.icon-nav-main {
+    flex: 0 0 auto;
+}
+
+.icon-nav-utility {
+    margin-top: auto;
+    border-top: 1px solid #e4e4e4;
+}
+
+.icon-nav.expanded {
+    width: 240px;
+}
+
+.icon-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.icon-menu-item:hover {
+    background: rgba(233, 30, 99, 0.1);
+    color: linear-gradient(135deg, rgb(38, 0, 1) 0%, #6f1d1d 100%);
+}
+
+.icon-large {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.icon-label {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.icon-nav.expanded .icon-label {
+    opacity: 1;
+}
+
+.admin-login-menu {
+    position: relative;
+    width: 100%;
+}
+
+.admin-login-trigger {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.admin-login-popover {
+    position: absolute;
+    bottom: 0;
+    left: calc(100% + 12px);
+    width: min(360px, calc(100vw - 84px));
+    padding: 20px;
+    border: 1px solid rgba(38, 0, 1, 0.12);
+    border-radius: 18px;
+    background: #fffaf8;
+    box-shadow: 0 20px 55px rgba(38, 0, 1, 0.24);
+    color: #260001;
+    white-space: normal;
+    z-index: 80;
+}
+
+.admin-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.admin-popover-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.admin-popover-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #260001;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.admin-popover-close:hover,
+.admin-popover-close:focus-visible {
+    background: rgba(38, 0, 1, 0.08);
+}
+
+.admin-popover-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-popover-form label {
+    margin-top: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.admin-popover-form input {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid rgba(38, 0, 1, 0.2);
+    border-radius: 10px;
+    background: #fff;
+    color: #260001;
+    font: inherit;
+    outline: none;
+}
+
+.admin-popover-form input:focus {
+    border-color: #94702d;
+    box-shadow: 0 0 0 3px rgba(148, 112, 45, 0.16);
+}
+
+.admin-popover-password {
+    position: relative;
+}
+
+.admin-popover-password input {
+    padding-right: 46px;
+}
+
+.admin-popover-password button {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #260001;
+    cursor: pointer;
+}
+
+.admin-popover-password button:hover,
+.admin-popover-password button:focus-visible {
+    background: rgba(38, 0, 1, 0.08);
+}
+
+.admin-popover-submit {
+    min-height: 42px;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #260001, #6f1d1d);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-popover-submit:disabled,
+.admin-popover-recovery:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.admin-popover-recovery {
+    display: block;
+    margin: 12px auto 0;
+    border: 0;
+    background: transparent;
+    color: #6f1d1d;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-popover-message {
+    margin: 12px 0 0;
+    color: #9b2c2c;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* ===== Mobile Sidebar (Hamburger menu, full width) ===== */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background: #fff;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .mobile-sidebar {
+        display: none;
+    }
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ececec;
+}
+
+.sidebar-logo {
+    height: 45px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+.close-btn {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-list-utility {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #ececec;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.sidebar-link:hover {
+    color: #E91E63;
+}
+
+.admin-login-mobile-trigger {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+.mobile-admin-login-menu {
+    position: relative;
+}
+
+@media (max-width: 767px) {
+    .mobile-admin-login-menu .admin-login-popover {
+        position: fixed;
+        top: 50%;
+        bottom: auto;
+        left: 50%;
+        width: min(360px, calc(100vw - 32px));
+        transform: translate(-50%, -50%);
+        z-index: 80;
+    }
+}
+
+.sidebar-icon {
+    font-size: 18px;
+}
+
+.header-nav {
+    margin-left: 16px;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    margin-right: 12px;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: #E91E63;
+}

@@ -1,0 +1,186 @@
+/* =============================================
+   SHARED POLICY PAGE STYLES
+   ============================================= */
+.policy-page {
+  min-height: calc(100vh - 70px);
+  background: #fdf8f4;
+}
+
+.policy-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
+}
+
+/* Hero banner */
+.policy-hero {
+  background: linear-gradient(135deg, rgb(28, 0, 0) 0%, #7a2a2a 100%);
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin-bottom: 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/senganthal.jpg') center/cover no-repeat;
+  opacity: 0.06;
+  border-radius: 16px;
+}
+
+.policy-hero h1 {
+  font-family: 'Croissant One', serif;
+  font-size: 2.4rem;
+  color: rgb(255, 208, 97);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 8px;
+}
+
+.policy-date {
+  font-size: 0.85rem;
+  color: rgba(255, 235, 235, 0.65);
+  position: relative;
+  z-index: 1;
+}
+
+/* Sections */
+.policy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.policy-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(100, 20, 20, 0.06);
+  border-left: 4px solid rgb(148, 112, 45);
+  transition: box-shadow 0.2s;
+}
+
+.policy-section:hover {
+  box-shadow: 0 4px 20px rgba(100, 20, 20, 0.1);
+}
+
+.policy-section h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(60, 10, 10);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(148, 112, 45, 0.2);
+}
+
+.policy-section p {
+  font-size: 0.93rem;
+  color: #4a3a3a;
+  line-height: 1.75;
+  margin-bottom: 10px;
+}
+
+.policy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section ul {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.policy-section ul li {
+  font-size: 0.91rem;
+  color: #4a3a3a;
+  line-height: 1.6;
+}
+
+.policy-section a {
+  color: rgb(148, 112, 45);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.policy-section a:hover {
+  color: rgb(100, 60, 10);
+}
+
+/* Info page highlight boxes */
+.info-highlight {
+  background: linear-gradient(135deg, #fff8ee 0%, #ffe8c0 100%);
+  border-radius: 12px;
+  padding: 24px 28px;
+  border: 1px solid rgba(148, 112, 45, 0.25);
+  margin-top: 8px;
+}
+
+.info-highlight strong {
+  display: block;
+  font-size: 0.95rem;
+  color: rgb(60, 10, 10);
+  margin-bottom: 4px;
+}
+
+.info-highlight p {
+  font-size: 0.9rem;
+  color: #5a4030;
+  margin: 0 !important;
+}
+
+/* Steps / process list */
+.policy-steps {
+  list-style: none !important;
+  padding-left: 0 !important;
+  counter-reset: steps;
+}
+
+.policy-steps li {
+  counter-increment: steps;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.policy-steps li::before {
+  content: counter(steps);
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: rgb(148, 112, 45);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .policy-container {
+    padding: 28px 16px 48px;
+  }
+
+  .policy-hero {
+    padding: 36px 24px;
+  }
+
+  .policy-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .policy-section {
+    padding: 20px 20px;
+  }
+}

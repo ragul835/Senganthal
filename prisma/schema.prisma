@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../server/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Dress {
+  id          String       @id @default(uuid())
+  name        String
+  price       Float
+  category    String       @default("new dresss")
+  sizes       String       @default("")
+  description String       @default("")
+  washCare    String       @default("")
+  shipping    String       @default("")
+  createdAt   DateTime     @default(now())
+  images      DressImage[]
+
+  @@index([createdAt])
+  @@index([category])
+}
+
+model DressImage {
+  id        String   @id @default(uuid())
+  dressId   String
+  fileId    String   @unique
+  fileName  String
+  mimeType  String
+  createdAt DateTime @default(now())
+  dress     Dress    @relation(fields: [dressId], references: [id], onDelete: Cascade)
+
+  @@index([dressId])
+}
+
+model CustomerOrder {
+  id        String   @id @default(uuid())
+  orderId   String   @unique
+  firstName String
+  lastName  String
+  address   String
+  apartment String   @default("")
+  city      String
+  state     String
+  pinCode   String
+  phone     String
+  items     Json
+  total     Float
+  status    String   @default("New order")
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([phone])
+}
+
+model CustomerReview {
+  id          String   @id @default(uuid())
+  name        String
+  stars       Int
+  description String
+  createdAt   DateTime @default(now())
+}
+
+model UpcomingDress {
+  id            String   @id @default(uuid())
+  title         String
+  status        String   @default("Upcoming")
+  description   String
+  mainImages    String[]
+  workingImages String[]
+  createdAt     DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Admin {
+  id           String               @id @default(uuid())
+  email        String               @unique
+  passwordHash String
+  labels       Json                 @default("[\"admin\"]")
+  createdAt    DateTime             @default(now())
+  sessions     AdminSession[]
+  resetTokens  PasswordResetToken[]
+}
+
+model AdminSession {
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  adminId   String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([expiresAt])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(uuid())
+  tokenHash String    @unique
+  adminId   String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  admin     Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+}

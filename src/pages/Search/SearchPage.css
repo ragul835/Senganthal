@@ -1,0 +1,164 @@
+.search-page {
+  padding: 40px 20px 40px 80px;
+  background: linear-gradient(135deg, #fff7f2 0%, #fbeee9 100%);
+  min-height: 100vh;
+}
+
+.search-container {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.search-header {
+  margin-bottom: 30px;
+}
+
+.search-header h1 {
+  font-family: 'Poppins', sans-serif;
+  color: rgb(148, 112, 45);
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.search-header p {
+  color: rgba(38, 0, 1, 0.7);
+  font-size: 1.1rem;
+}
+
+.search-filter-card {
+  background: #fffaf8;
+  border-radius: 20px;
+  border: 1px solid rgba(38, 0, 1, 0.08);
+  box-shadow: 0 12px 32px rgba(38, 0, 1, 0.06);
+  padding: 24px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-bar-wrapper input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+
+  .search-page {
+    padding: 30px 16px;
+  }
+}
+
+.category-pills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pills-label {
+  font-weight: 600;
+  color: rgb(38, 0, 1);
+}
+
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill-btn {
+  border: 1px solid rgba(38, 0, 1, 0.12);
+  border-radius: 999px;
+  padding: 8px 16px;
+  background: #fff;
+  color: rgb(38, 0, 1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill-btn:hover {
+  background: #fff3ee;
+  border-color: rgb(148, 112, 45);
+}
+
+.pill-btn.active {
+  background: rgb(148, 112, 45);
+  color: #fff;
+  border-color: rgb(148, 112, 45);
+}
+
+.results-info {
+  margin-bottom: 16px;
+  color: rgba(38, 0, 1, 0.6);
+  font-weight: 500;
+}
+
+.search-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+}
+
+.catalog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(38, 0, 1, 0.08);
+}
+
+.catalog-card-info {
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.catalog-card-info h3 {
+  font-size: 1.1rem;
+  color: rgb(38, 0, 1);
+  font-weight: 600;
+  margin: 0;
+}
+
+.price-tag {
+  color: rgb(148, 112, 45);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 0 !important;
+}
+
+.category-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: rgba(38, 0, 1, 0.5);
+  background: rgba(38, 0, 1, 0.05);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.empty-image-placeholder {
+  aspect-ratio: 4 / 5;
+  background: #f3e8e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(38, 0, 1, 0.4);
+  font-weight: 500;
+  border-radius: 14px;
+}

@@ -1,0 +1,16 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import { getAllDressesWithImages, type DressWithImages } from "../../services/appwrite";
+import { useCart } from "../../state/useCart";
+import "../Admin/Admin.css";
+import "./ProductPage.css";
+export default function ProductPage() {
+  const { dressId } = useParams(); const navigate = useNavigate(); const cart = useCart();
+  const [dress, setDress] = useState<DressWithImages | null>(null); const [loading, setLoading] = useState(true); const [error, setError] = useState(""); const [size, setSize] = useState(""); const [quantity, setQuantity] = useState(1); const [message, setMessage] = useState("");
+  useEffect(() => { let live = true; void getAllDressesWithImages().then(all => { if (live) setDress(all.find(item => item.id === dressId) || null); }).catch(e => { if (live) setError(e.message); }).finally(() => { if (live) setLoading(false); }); return () => { live = false; }; }, [dressId]);
+  const sizes = dress?.sizes?.split(",").map(value => value.trim()).filter(Boolean) || [];
+  function add() { if (!dress) return false; if (sizes.length && !size) { setMessage("Choose a size first."); return false; } const price = Number(dress.price); if (!Number.isFinite(price) || price <= 0) { setMessage("This item is not available for ordering yet."); return false; } cart.add({ id: dress.id, name: dress.name, price, size: size || "One size", quantity, imageUrl: dress.images[0]?.imageUrl || "" }); setMessage("Added to cart."); return true; }
+  return <><Header /><main className="product-page"><Link to="/search">← Back to catalog</Link>{loading ? <p>Loading dress…</p> : error ? <p role="alert">{error}</p> : !dress ? <p>Dress not found.</p> : <div className="product-layout"><div className="product-images">{dress.images.map(image => <img key={image.fileId} src={image.imageUrl} alt={dress.name} />)}</div><div className="product-info"><p>{dress.category}</p><h1>{dress.name}</h1><p className="product-price">₹{dress.price}</p>{sizes.length > 0 && <div className="form-group"><label htmlFor="product-size">Size</label><select id="product-size" value={size} onChange={event => setSize(event.target.value)}><option value="">Select size</option>{sizes.map(value => <option key={value}>{value}</option>)}</select></div>}<div className="form-group"><label htmlFor="product-quantity">Quantity</label><input id="product-quantity" type="number" min="1" max="20" value={quantity} onChange={event => setQuantity(Math.max(1, Math.min(20, Number(event.target.value) || 1)))} /></div><div className="product-actions"><button className="upload-button" onClick={add}>Add to cart</button><button className="upload-button" onClick={() => { if (add()) navigate("/checkout"); }}>Buy it now</button></div><p role="status">{message}</p><section><h2>Description</h2><p>{dress.description || "Details coming soon."}</p></section><section><h2>Wash care</h2><p>{dress.washCare || "Care details coming soon."}</p></section><section><h2>Shipping</h2><p>{dress.shipping || "Delivery details will be confirmed with your order."}</p></section></div></div>}</main><Footer /></>;
+}

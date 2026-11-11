@@ -1,0 +1,11 @@
+.page-content {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .page-content {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+        transition: margin-left 0.3s ease;
+    }
+}
